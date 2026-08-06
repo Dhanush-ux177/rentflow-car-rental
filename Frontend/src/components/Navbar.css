@@ -1,0 +1,122 @@
+/* ===== NAVBAR ===== */
+.navbar {
+  background: var(--primary);
+  color: white;
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff, #a0c4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background: white;
+  border-radius: 4px;
+  transition: 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* ===== DROPDOWN MENU ===== */
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--secondary);
+  padding: 0.5rem 0;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.dropdown-menu.open {
+  display: flex;
+}
+
+.dropdown-menu a,
+.dropdown-logout {
+  padding: 0.8rem 1.5rem;
+  color: #e5e7eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.dropdown-menu a:hover,
+.dropdown-logout:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.dropdown-logout {
+  color: #fca5a5;
+}
+.dropdown-logout:hover {
+  background: #dc2626;
+  color: white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 769px) {
+  .dropdown-menu {
+    max-width: 320px;
+    left: auto;
+    right: 20px;
+    border-radius: 12px;
+    top: calc(100% + 10px);
+  }
+}

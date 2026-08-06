@@ -1,0 +1,272 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #0f172a;
+  --secondary: #1e293b;
+  --accent-start: #6C63FF;
+  --accent-end: #3B82F6;
+  --accent: #6C63FF;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --text: #1f2937;
+  --bg: #f1f5f9;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02);
+  --shadow-hover: 0 20px 40px -10px rgba(0,0,0,0.2);
+  --radius: 16px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-size: 18px;
+}
+
+/* ===== GLOBAL BACKGROUND IMAGE – FULL WEBSITE ===== */
+body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  background-image: url('/images/Inspire%20Rent%20A%20Car.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Dark overlay for the entire page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);  /* adjust opacity */
+  z-index: 0;
+}
+
+/* Ensure all content sits above the overlay */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== GLASS EFFECT CONTAINERS ===== */
+.app-main,
+.dashboard,
+.cars-page,
+.car-details,
+.booking-page,
+.auth-page,
+.legal-page,
+.contact-page,
+.admin-bookings-page,
+.admin-users-page,
+.admin-dashboard {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+
+/* Allow hero to show the global background */
+.hero {
+  background: rgba(0, 0, 0, 0.4) !important;  /* dark overlay only */
+  backdrop-filter: blur(2px);
+  border-radius: var(--radius);
+}
+
+/* Override for auth pages (they already have their own layout) */
+.auth-page {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Keep cards as they were */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  transition: var(--transition);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ===== REST OF YOUR STYLES (unchanged) ===== */
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.3rem; }
+
+p {
+  font-weight: 400;
+  color: #334155;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(108, 99, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px 0 rgba(108, 99, 255, 0.5);
+}
+.btn:hover::after {
+  opacity: 1;
+}
+.btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 8px 0 rgba(108, 99, 255, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.3);
+}
+.btn-secondary:hover {
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+  box-shadow: none;
+}
+.btn-outline:hover {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 14px rgba(108, 99, 255, 0.35);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+.btn-danger:hover {
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+/* Inputs */
+input, select, textarea {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  background: white;
+  transition: var(--transition);
+  width: 100%;
+  color: var(--text);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.15);
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Utility */
+.text-center { text-align: center; }
+.text-muted { color: #64748b; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  .btn { padding: 0.6rem 1.5rem; font-size: 0.95rem; }
+  .app-main,
+  .dashboard,
+  .cars-page,
+  .car-details,
+  .booking-page,
+  .auth-page,
+  .legal-page,
+  .contact-page,
+  .admin-bookings-page,
+  .admin-users-page,
+  .admin-dashboard {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
