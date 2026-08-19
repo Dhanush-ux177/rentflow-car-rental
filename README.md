@@ -36,7 +36,7 @@ A modern, full‑stack car rental platform built with **React (Vite)**, **Node.j
 | **Manage Bookings** | View, track, and cancel bookings |
 | **User Dashboard** | Profile management and booking history |
 | **Responsive Design** | Works seamlessly on mobile, tablet, and desktop |
-| **AI Assistant** | Smart chatbot for instant help |
+
 
 ### 👨‍💼 Admin Features
 | Feature | Description |
