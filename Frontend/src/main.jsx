@@ -4,12 +4,8 @@ import App from './App.jsx';
 import './index.css';
 import axios from 'axios';
 
-// Use local backend for development, production URL for production
-const API_URL = import.meta.env.PROD 
-  ? 'https://rentflow-backend-ad3t.onrender.com' 
-  : 'http://localhost:5000';
-
-axios.defaults.baseURL = API_URL;
+// Auto: use Render if on Vercel, local if on localhost
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

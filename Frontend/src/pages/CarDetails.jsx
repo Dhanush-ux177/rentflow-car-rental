@@ -1,7 +1,7 @@
-// Frontend/src/pages/CarDetails.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './CarDetails.css';
 
 function CarDetails() {
   const { id } = useParams();
@@ -10,8 +10,7 @@ function CarDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Updated API call to use the live Render backend URL
-    axios.get(`${import.meta.env.VITE_API_URL}/api/cars/${id}`)
+    axios.get(`/api/cars/${id}`)
       .then(res => {
         setCar(res.data);
         setLoading(false);
@@ -28,83 +27,30 @@ function CarDetails() {
     }
   };
 
-  if (loading) return <div className="w-full text-center py-20 text-xl font-bold text-gray-500">Loading car details...</div>;
-  if (!car) return <div className="w-full text-center py-20 text-xl font-bold text-red-500">Car not found</div>;
+  if (loading) return <p>Loading...</p>;
+  if (!car) return <p>Car not found</p>;
 
   return (
-    // Full screen light gray background with flex centering
-    <div className="min-h-screen w-full bg-gray-50 py-10 px-4 font-sans flex items-center justify-center">
-      
-      {/* White detailed card */}
-      <div className="max-w-6xl w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col md:flex-row">
-        
-        {/* Left Side: Image */}
-        <div className="md:w-1/2 w-full relative">
-          <img 
-            src={car.image || 'https://via.placeholder.com/600x400?text=Car'} 
-            alt={car.name} 
-            className="w-full h-full object-cover min-h-[400px] md:min-h-full" 
-          />
-          {/* Colored Availability Badge */}
-          <div className={`absolute top-4 right-4 px-4 py-2 rounded-full text-white text-sm font-bold shadow-lg ${car.availability ? 'bg-green-600' : 'bg-red-600'}`}>
-            {car.availability ? '✓ Available' : '✗ Unavailable'}
-          </div>
+    <div className="car-details">
+      <img src={car.image || 'https://via.placeholder.com/600x400?text=Car'} alt={car.name} className="detail-image" />
+      <div className="detail-info">
+        <h1>{car.name} ({car.model})</h1>
+        <p className="detail-price">₹{car.pricePerDay}/day</p>
+        <div className="detail-specs">
+          <span className="plate">{car.year}</span>
+          <span className="plate">{car.fuelType}</span>
+          <span className="plate">{car.transmission}</span>
+          <span className="plate">{car.seatingCapacity} Seats</span>
+          <span className="plate">{car.mileage}</span>
         </div>
-
-        {/* Right Side: Details */}
-        <div className="md:w-1/2 w-full p-8 flex flex-col justify-between">
-          <div>
-            {/* Titles */}
-            <h1 className="text-3xl font-extrabold text-gray-800">{car.name}</h1>
-            <p className="text-lg text-gray-500 font-bold mt-1">{car.model}</p>
-            <p className="text-2xl font-extrabold text-[#0056D2] mt-2">₹{car.pricePerDay}/day</p>
-
-            {/* Specs Grid */}
-            <div className="grid grid-cols-2 gap-y-4 gap-x-6 mt-6 bg-gray-50 p-5 rounded-xl font-medium">
-              <div><span className="font-bold text-gray-800">Year:</span> {car.year}</div>
-              <div><span className="font-bold text-gray-800">Fuel:</span> {car.fuelType}</div>
-              <div><span className="font-bold text-gray-800">Transmission:</span> {car.transmission}</div>
-              <div><span className="font-bold text-gray-800">Seats:</span> {car.seatingCapacity}</div>
-              <div><span className="font-bold text-gray-800">Mileage:</span> {car.mileage}</div>
-              <div><span className="font-bold text-gray-800">Status:</span> {car.availability ? 'Available' : 'Not Available'}</div>
-            </div>
-
-            {/* Features */}
-            <div className="mt-6">
-              <span className="font-bold text-gray-800 block mb-2">Features:</span>
-              <div className="flex flex-wrap gap-2">
-                {car.features?.length > 0 ? (
-                  car.features.map((feat, index) => (
-                    <span key={index} className="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
-                      {feat}
-                    </span>
-                  ))
-                ) : (
-                  <span className="text-gray-500 font-medium">N/A</span>
-                )}
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-600 leading-relaxed mt-6 font-normal text-base">{car.description}</p>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8 pt-6 border-t border-gray-200">
-            <button 
-              onClick={handleBook} 
-              disabled={!car.availability}
-              className={`w-full py-3 rounded-lg font-bold text-white transition-all shadow-md ${car.availability ? 'bg-[#0056D2] hover:bg-blue-700 hover:shadow-lg' : 'bg-gray-400 cursor-not-allowed'}`}
-            >
-              {car.availability ? 'Book Now' : 'Not Available'}
-            </button>
-            <Link 
-              to="/cars" 
-              className="w-full text-center py-3 rounded-lg font-bold text-gray-800 bg-gray-200 hover:bg-gray-300 transition-all"
-            >
-              Back to Cars
-            </Link>
-          </div>
+        <p><strong>Availability:</strong> {car.availability ? 'Available' : 'Not Available'}</p>
+        <p><strong>Features:</strong> {car.features?.join(', ') || 'N/A'}</p>
+        <p>{car.description}</p>
+        <div className="detail-actions">
+          <button onClick={handleBook} className="btn btn-primary" disabled={!car.availability}>
+            {car.availability ? 'Book Now' : 'Unavailable'}
+          </button>
+          <Link to="/cars" className="btn btn-outline">Back to Cars</Link>
         </div>
       </div>
     </div>

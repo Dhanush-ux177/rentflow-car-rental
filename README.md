@@ -221,7 +221,7 @@ npm install
 mongod
 
 # Seed the database (populate with sample cars and users)
-npm run seed
+nnpm run seed
 
 # Start the backend server
 npm run dev
