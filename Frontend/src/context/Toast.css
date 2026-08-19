@@ -12,26 +12,28 @@
 }
 
 .toast {
-  background: #1f2937;
+  background: var(--ink);
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  font-size: 1rem;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
   font-weight: 500;
-  min-width: 200px;
+  min-width: 220px;
   text-align: center;
   pointer-events: auto;
+  cursor: pointer;
   animation: toastSlideUp 0.3s ease;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--plate-gold);
 }
 
 .toast-success {
-  border-left-color: #10b981;
+  border-left-color: var(--success);
 }
 
 .toast-error {
-  border-left-color: #ef4444;
+  border-left-color: var(--danger);
 }
 
 @keyframes toastSlideUp {

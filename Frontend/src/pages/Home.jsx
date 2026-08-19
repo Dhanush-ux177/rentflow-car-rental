@@ -22,10 +22,6 @@ function Home() {
     if (token) {
       navigate('/cars');
     } else {
-      // If not logged in, go to register page (or login?)
-      // The user said: "if the user already register redirect to login page"
-      // So we can go to /login and they can login or register from there.
-      // But to be safe, we'll send them to /login.
       navigate('/login');
     }
   };
@@ -41,20 +37,24 @@ function Home() {
     <div className="home">
       {/* Hero Section */}
       <section className="hero">
-        <h1>🚗 Drive Your Dream Car</h1>
-        <p>Rent the best cars at affordable prices. Explore our fleet and book now.</p>
+        <span className="hero-eyebrow">Rentflow &middot; Self-drive &amp; chauffeured</span>
+        <h1>Drive your dream car</h1>
+        <p>Rent the best cars at affordable prices. Explore our fleet and book in minutes.</p>
         <button onClick={handleBrowse} className="btn btn-primary">Browse All Cars</button>
       </section>
 
+      <div className="lane-divider" aria-hidden="true"></div>
+
       {/* Featured Cars - Continuous Scrolling */}
       <section className="featured">
-        <h2>✨ Featured Cars</h2>
+        <h2>Featured cars</h2>
+        <p className="featured-sub">Fresh off the lot</p>
         <div className="car-scroll-container">
           <div className="car-scroll-track">
             {doubledCars.map((car, index) => (
               <div key={`${car._id}-${index}`} className="car-slide">
-                <img 
-                  src={car.image || 'https://via.placeholder.com/400x300?text=Car'} 
+                <img
+                  src={car.image || 'https://via.placeholder.com/400x300?text=Car'}
                   alt={car.name}
                   className="car-slide-image"
                 />
@@ -72,19 +72,19 @@ function Home() {
       {/* Quick Stats */}
       <section className="stats-section">
         <div className="stat-item">
-          <h3>🚗 {cars.length}+</h3>
-          <p>Cars Available</p>
+          <h3>{cars.length}+</h3>
+          <p>Cars available</p>
         </div>
         <div className="stat-item">
-          <h3>⭐ 4.8</h3>
-          <p>Average Rating</p>
+          <h3>4.8</h3>
+          <p>Average rating</p>
         </div>
         <div className="stat-item">
-          <h3>🏆 500+</h3>
-          <p>Happy Customers</p>
+          <h3>500+</h3>
+          <p>Happy customers</p>
         </div>
         <div className="stat-item">
-          <h3>📍 10+</h3>
+          <h3>10+</h3>
           <p>Locations</p>
         </div>
       </section>

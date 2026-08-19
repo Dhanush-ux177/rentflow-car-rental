@@ -5,11 +5,9 @@
 }
 
 .legal-page h1 {
-  color: var(--primary);
-  margin-bottom: 2rem;
-  font-size: 2.2rem;
-  border-bottom: 3px solid var(--accent);
-  padding-bottom: 0.5rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  font-size: 2.1rem;
 }
 
 .legal-content section {
@@ -17,20 +15,24 @@
 }
 
 .legal-content h2 {
-  color: var(--secondary);
-  font-size: 1.3rem;
+  color: var(--ink);
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
 }
 
 .legal-content p {
   line-height: 1.8;
-  color: #374151;
+  color: var(--text-soft);
 }
 
 .last-updated {
   margin-top: 2rem;
-  font-style: italic;
-  color: #6b7280;
-  border-top: 1px solid #e5e7eb;
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  border-top: 1px dashed #d8d2bf;
   padding-top: 1rem;
 }

@@ -57,8 +57,8 @@ function Cars() {
       {/* Filter Toggle Button */}
       <div className="filter-header">
         <h2>All Cars</h2>
-        <button 
-          className="filter-toggle-btn" 
+        <button
+          className="filter-toggle-btn"
           onClick={() => setShowFilters(!showFilters)}
         >
           {showFilters ? '✕' : '⚙️'} Filters
@@ -120,7 +120,11 @@ function Cars() {
               <h3>{car.name}</h3>
               <p className="car-model">{car.model}</p>
               <p className="price">₹{car.pricePerDay}/day</p>
-              <p className="car-meta">{car.fuelType} • {car.seatingCapacity} Seats • {car.transmission}</p>
+              <div className="car-meta">
+                <span className="plate">{car.fuelType}</span>
+                <span className="plate">{car.seatingCapacity} Seats</span>
+                <span className="plate">{car.transmission}</span>
+              </div>
               <Link to={`/cars/${car._id}`} className="btn btn-primary">View Details</Link>
             </div>
           ))}

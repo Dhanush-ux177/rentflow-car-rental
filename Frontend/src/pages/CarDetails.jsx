@@ -35,19 +35,23 @@ function CarDetails() {
       <img src={car.image || 'https://via.placeholder.com/600x400?text=Car'} alt={car.name} className="detail-image" />
       <div className="detail-info">
         <h1>{car.name} ({car.model})</h1>
-        <p><strong>Year:</strong> {car.year}</p>
-        <p><strong>Fuel:</strong> {car.fuelType}</p>
-        <p><strong>Transmission:</strong> {car.transmission}</p>
-        <p><strong>Seats:</strong> {car.seatingCapacity}</p>
-        <p><strong>Mileage:</strong> {car.mileage}</p>
-        <p><strong>Price:</strong> ₹{car.pricePerDay}/day</p>
+        <p className="detail-price">₹{car.pricePerDay}/day</p>
+        <div className="detail-specs">
+          <span className="plate">{car.year}</span>
+          <span className="plate">{car.fuelType}</span>
+          <span className="plate">{car.transmission}</span>
+          <span className="plate">{car.seatingCapacity} Seats</span>
+          <span className="plate">{car.mileage}</span>
+        </div>
         <p><strong>Availability:</strong> {car.availability ? 'Available' : 'Not Available'}</p>
         <p><strong>Features:</strong> {car.features?.join(', ') || 'N/A'}</p>
         <p>{car.description}</p>
-        <button onClick={handleBook} className="btn btn-primary" disabled={!car.availability}>
-          {car.availability ? 'Book Now' : 'Unavailable'}
-        </button>
-        <Link to="/cars" className="btn">Back to Cars</Link>
+        <div className="detail-actions">
+          <button onClick={handleBook} className="btn btn-primary" disabled={!car.availability}>
+            {car.availability ? 'Book Now' : 'Unavailable'}
+          </button>
+          <Link to="/cars" className="btn btn-outline">Back to Cars</Link>
+        </div>
       </div>
     </div>
   );
