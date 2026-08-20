@@ -2,20 +2,23 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// ===== MIDDLEWARE =====
 app.use(cors());
 app.use(express.json());
 
+// ===== MONGODB CONNECTION =====
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('✅ Connected to MongoDB'))
   .catch(err => console.error('❌ MongoDB connection error:', err));
 
-// ---------- User Schema ----------
+// ===== MODELS =====
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
@@ -29,7 +32,6 @@ const UserSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', UserSchema);
 
-// ---------- Car Schema ----------
 const CarSchema = new mongoose.Schema({
   name: { type: String, required: true },
   model: { type: String, required: true },
@@ -47,14 +49,13 @@ const CarSchema = new mongoose.Schema({
 });
 const Car = mongoose.model('Car', CarSchema);
 
-// ---------- Import other models ----------
 const Booking = require('./models/Booking');
 const Driver = require('./models/Driver');
 const Invoice = require('./models/Invoice');
 const Payment = require('./models/Payment');
 const Reminder = require('./models/Reminder');
 
-// ---------- Auth middleware ----------
+// ===== AUTH MIDDLEWARE =====
 const auth = (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
   if (!token) return res.status(401).json({ message: 'No token, authorization denied' });
@@ -72,7 +73,7 @@ const admin = (req, res, next) => {
   next();
 };
 
-// ---------- Auth routes ----------
+// ===== AUTH ROUTES =====
 app.post('/api/auth/register', async (req, res) => {
   try {
     const { name, email, password, phone, address, licenseNumber, cnic } = req.body;
@@ -102,7 +103,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-// ---------- Car routes ----------
+// ===== CAR ROUTES =====
 app.get('/api/cars', async (req, res) => {
   try {
     const { priceMin, priceMax, fuelType, seating, search } = req.query;
@@ -163,7 +164,7 @@ app.delete('/api/cars/:id', auth, admin, async (req, res) => {
   }
 });
 
-// ---------- Booking routes ----------
+// ===== BOOKING ROUTES =====
 app.post('/api/bookings', auth, async (req, res) => {
   try {
     const { carId, pickupDate, returnDate, pickupLocation, returnLocation, totalCost, notes, rentalType, driverId } = req.body;
@@ -235,7 +236,7 @@ app.put('/api/bookings/:id/cancel', auth, async (req, res) => {
   }
 });
 
-// ---------- Admin stats ----------
+// ===== ADMIN STATS =====
 app.get('/api/admin/stats', auth, admin, async (req, res) => {
   try {
     const safeCount = async (model, filter = {}) => {
@@ -269,26 +270,38 @@ app.get('/api/admin/stats', auth, admin, async (req, res) => {
       availableDrivers
     });
   } catch (err) {
-    console.error('Stats error:', err);
     res.status(500).json({ message: err.message });
   }
 });
 
-// ---------- NEW: Get all users (admin only) ----------
+// ===== USERS ROUTE (admin) =====
 app.get('/api/users', auth, admin, async (req, res) => {
   try {
-    const users = await User.find().select('-password'); // exclude password hash
+    const users = await User.find().select('-password');
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// ---------- Mount other routes ----------
+// ===== OTHER ROUTES =====
 app.use('/api/drivers', require('./routes/drivers'));
 app.use('/api/invoices', require('./routes/invoices'));
 app.use('/api/payments', require('./routes/payments'));
 app.use('/api/reminders', require('./routes/reminders'));
 
-// ---------- Start server ----------
+// ===== SERVE FRONTEND (React build) =====
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ===== CATCH‑ALL MIDDLEWARE – serves React app for any non‑API route =====
+// ✅ This works with Express 5 – no wildcard route needed.
+app.use((req, res) => {
+  // Skip API routes (they are handled above)
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ message: 'API endpoint not found' });
+  }
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// ===== START SERVER =====
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
