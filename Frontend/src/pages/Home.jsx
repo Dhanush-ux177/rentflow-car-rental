@@ -9,7 +9,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('/api/cars')
+    axios.get('https://rentflow-backend-ad3t.onrender.com/api/cars')
       .then(res => {
         setCars(res.data);
         setLoading(false);

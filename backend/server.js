@@ -9,8 +9,26 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ===== MIDDLEWARE =====
-app.use(cors());
+// ===== CORS – allow your frontend =====
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://rentflow-car-rental-1.onrender.com',   // ← your frontend URL
+  'https://rentflow-l80j.onrender.com'            // optional
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
+
 app.use(express.json());
 
 // ===== MONGODB CONNECTION =====
@@ -290,13 +308,12 @@ app.use('/api/invoices', require('./routes/invoices'));
 app.use('/api/payments', require('./routes/payments'));
 app.use('/api/reminders', require('./routes/reminders'));
 
-// ===== SERVE FRONTEND (React build) =====
+// ===== SERVE STATIC FRONTEND (if frontend is served from this service) =====
+// If you are using separate frontend service, you can comment these lines out.
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ===== CATCH‑ALL MIDDLEWARE – serves React app for any non‑API route =====
-// ✅ This works with Express 5 – no wildcard route needed.
+// Catch-all for React Router (only if you serve frontend from this service)
 app.use((req, res) => {
-  // Skip API routes (they are handled above)
   if (req.path.startsWith('/api')) {
     return res.status(404).json({ message: 'API endpoint not found' });
   }
