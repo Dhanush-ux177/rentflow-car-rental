@@ -1,150 +1,111 @@
-# 🚗 RentFlow – Complete Car Rental Management System
+# 🚗 RentFlow – Car Rental Management System
 
-A modern, full‑stack car rental platform built with **React (Vite)**, **Node.js/Express**, and **MongoDB**. Features user authentication, booking management, driver assignment, invoice generation, payment tracking, reminders, AI assistant, and a comprehensive admin dashboard.
+A modern, full‑stack car rental platform built with the **MERN stack** (MongoDB, Express.js, React, Node.js).  
+It features user authentication, car booking, driver assignment, invoice generation, payment tracking, reminders, and a powerful admin dashboard.
 
-![RentFlow Screenshot](https://via.placeholder.com/1000x500?text=RentFlow+Car+Rental+System)
+**Live Demo:**  
+- Frontend: [https://rentflow-car-rental.vercel.app](https://rentflow-car-rental.vercel.app)  
+- Backend API: [https://rentflow-car-rental-2.onrender.com](https://rentflow-car-rental-2.onrender.com)
 
 ---
 
 ## 📋 Table of Contents
 
-1. [Features](#-features)
-2. [Technology Stack](#%EF%B8%8F-technology-stack)
-3. [Project Structure](#-project-structure)
-4. [Quick Start](#-quick-start)
-5. [Demo Credentials](#-demo-credentials)
-6. [API Endpoints](#-api-endpoints)
-7. [AI Assistant](#-ai-assistant)
-8. [Responsive Design](#-responsive-design)
-9. [Troubleshooting](#-troubleshooting)
-10. [Deployment](#-deployment)
-11. [Contributing](#-contributing)
-12. [License](#-license)
+- [Features](#-features)
+- [Technology Stack](#-technology-stack)
+- [Project Structure](#-project-structure)
+- [Quick Start (Local Development)](#-quick-start-local-development)
+- [Environment Variables](#-environment-variables)
+- [Deployment](#-deployment)
+- [API Endpoints](#-api-endpoints)
+- [Screenshots](#-screenshots)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
 ## ✨ Features
 
 ### 👤 User Features
-| Feature | Description |
-|---------|-------------|
-| **Browse Cars** | View all available cars with search and filters (price, fuel, seating) |
-| **Detailed View** | See comprehensive car information and specifications |
-| **Easy Booking** | Simple booking process with date and location selection |
-| **Rental Options** | Choose between **Self Drive** or **With Driver** |
-| **Driver Selection** | Select available drivers when booking |
-| **Manage Bookings** | View, track, and cancel bookings |
-| **User Dashboard** | Profile management and booking history |
-| **Responsive Design** | Works seamlessly on mobile, tablet, and desktop |
-
+- **Browse Cars** – View all available cars with search and filters (price, fuel, seating).
+- **Car Details** – See comprehensive specifications, features, and availability.
+- **Easy Booking** – Select dates, location, rental type (self‑drive / with driver), and optional driver.
+- **Booking History** – View, track, and cancel bookings from the dashboard.
+- **User Dashboard** – Manage profile and booking history.
+- **Responsive Design** – Optimized for mobile, tablet, and desktop.
 
 ### 👨‍💼 Admin Features
-| Feature | Description |
-|---------|-------------|
-| **Dashboard Analytics** | View comprehensive statistics and metrics |
-| **Booking Management** | Update booking statuses and manage all orders |
-| **Car Management** | Add, edit, and delete vehicles |
-| **Driver Management** | Add, edit, delete, and track driver availability |
-| **User Management** | View all registered users and their details |
-| **Invoice Generation** | Generate invoices from completed bookings |
-| **Payment Tracking** | Record and track payments for bookings |
-| **Reminder System** | Create and manage booking reminders |
-| **Revenue Tracking** | Monitor total revenue and completed bookings |
-| **AI Assistant** | Smart chatbot for admin queries (stats, recent bookings) |
+- **Dashboard Analytics** – Overview of total cars, bookings, revenue, customers, and drivers.
+- **Car Management** – Add, edit, and delete vehicles.
+- **Booking Management** – View all bookings and update their status (pending, confirmed, completed, cancelled).
+- **Driver Management** – Add, edit, delete, and track driver availability.
+- **Invoice Generation** – Generate invoices from completed bookings.
+- **Payment Tracking** – Record and manage payments.
+- **Reminder System** – Create and manage booking reminders.
+- **User Management** – View all registered users.
 
-### 🤖 AI Assistant
-- **Rule‑based responses** – Handles common queries about cars, bookings, and stats
-- **Gemini AI integration** – Optional upgrade for smarter, context‑aware responses
-- **Admin‑specific commands** – `"stats"`, `"recent bookings"` for admins
-- **Navigation actions** – Can guide users to car details pages
-
-### 🔐 Security Features
-- Secure password hashing with bcryptjs
-- JWT token‑based authentication (7‑day expiry)
-- Protected routes with role‑based access (User / Admin)
-- Input validation on frontend and backend
-- CORS protection
-- Environment variable management
+### 🔐 Security
+- Password hashing with bcrypt.
+- JWT‑based authentication (7‑day expiry).
+- Protected routes (user / admin roles).
+- CORS configuration for secure cross‑origin requests.
+- Environment variables for sensitive data.
 
 ---
 
 ## 🛠️ Technology Stack
 
 ### Backend
-| Technology | Purpose |
-|------------|---------|
-| **Node.js** | Runtime environment |
-| **Express.js** | Web framework for REST APIs |
-| **MongoDB** | NoSQL database |
-| **Mongoose** | ODM for MongoDB (schemas, models, queries) |
-| **JWT (jsonwebtoken)** | Authentication tokens |
-| **bcryptjs** | Password hashing |
-| **cors** | Cross‑origin resource sharing |
-| **dotenv** | Environment variables |
-| **multer** | File upload (for future features) |
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB (Mongoose ODM)
+- **Authentication:** JSON Web Tokens (JWT)
+- **Password Hashing:** bcryptjs
+- **Other:** cors, dotenv, multer
 
 ### Frontend
-| Technology | Purpose |
-|------------|---------|
-| **React 18** | UI library |
-| **Vite** | Fast bundler and dev server |
-| **React Router v6** | Client‑side routing |
-| **Axios** | HTTP client for API calls |
-| **Context API** | Global state management (Toast notifications) |
-| **CSS Variables** | Theming and styling |
-| **Poppins Font** | Modern typography |
+- **Library:** React 18 (Vite)
+- **Routing:** React Router v6
+- **HTTP Client:** Axios
+- **Styling:** Vanilla CSS with CSS variables
+- **Fonts:** Google Fonts (Inter, Space Grotesk, Space Mono)
 
-### Development & Deployment
-- **Git** – Version control
-- **VS Code** – Recommended editor
-- **MongoDB Compass** – Database GUI
-- **Postman** – API testing
-- **Render / Vercel / Netlify** – Deployment platforms
+### Deployment
+- **Backend:** Render (Node.js Web Service)
+- **Frontend:** Vercel (Static Site)
 
 ---
 
 ## 📁 Project Structure
 rentflow-car-rental/
-│
 ├── backend/
-│ ├── server.js # Main Express server (all endpoints)
-│ ├── package.json # Dependencies
-│ ├── .env # Environment variables (never commit!)
-│ ├── seed.js # Database seeding script
-│ │
-│ ├── models/ # Mongoose schemas
+│ ├── models/
 │ │ ├── Booking.js
-│ │ ├── Car.js (optional – defined inline in server.js)
 │ │ ├── Driver.js
 │ │ ├── Invoice.js
 │ │ ├── Payment.js
 │ │ └── Reminder.js
-│ │
-│ ├── routes/ # API route handlers
-│ │ ├── ai.js
+│ ├── routes/
 │ │ ├── drivers.js
 │ │ ├── invoices.js
 │ │ ├── payments.js
 │ │ └── reminders.js
-│ │
-│ └── middleware/ # Custom middleware
-│ ├── auth.js
-│ └── admin.js
-│
+│ ├── middleware/
+│ │ ├── auth.js
+│ │ └── admin.js
+│ ├── server.js
+│ ├── seed.js
+│ ├── package.json
+│ └── .env (not committed)
 ├── frontend/
 │ ├── src/
-│ │ ├── pages/ # All page components
+│ │ ├── pages/
 │ │ │ ├── Home.jsx
-│ │ │ ├── Home.css
 │ │ │ ├── Cars.jsx
-│ │ │ ├── Cars.css
 │ │ │ ├── CarDetails.jsx
-│ │ │ ├── CarDetails.css
 │ │ │ ├── Booking.jsx
-│ │ │ ├── Booking.css
 │ │ │ ├── Login.jsx
 │ │ │ ├── Register.jsx
-│ │ │ ├── Auth.css
 │ │ │ ├── UserDashboard.jsx
 │ │ │ ├── AdminDashboard.jsx
 │ │ │ ├── AdminBookings.jsx
@@ -153,38 +114,23 @@ rentflow-car-rental/
 │ │ │ ├── Invoices.jsx
 │ │ │ ├── Payments.jsx
 │ │ │ ├── Reminders.jsx
-│ │ │ ├── Dashboard.css
-│ │ │ ├── Terms.jsx
-│ │ │ ├── Terms.css
-│ │ │ ├── Privacy.jsx
-│ │ │ ├── Privacy.css
-│ │ │ ├── Contact.jsx
-│ │ │ └── Contact.css
-│ │ │
-│ │ ├── components/ # Reusable components
+│ │ │ └── (Legal pages: Terms, Privacy, Contact)
+│ │ ├── components/
 │ │ │ ├── Navbar.jsx
-│ │ │ ├── Navbar.css
 │ │ │ ├── Footer.jsx
-│ │ │ ├── Footer.css
 │ │ │ ├── ProtectedRoute.jsx
 │ │ │ └── ChatAssistant.jsx
-│ │ │
-│ │ ├── context/ # React Context providers
+│ │ ├── context/
 │ │ │ └── ToastContext.jsx
-│ │ │
 │ │ ├── App.jsx
-│ │ ├── App.css
 │ │ ├── main.jsx
 │ │ └── index.css
-│ │
 │ ├── public/
-│ │ └── images/ # Static images
-│ │ └── inspire-bg.jpg
-│ │
+│ │ └── images/ (car images & background)
 │ ├── index.html
 │ ├── package.json
 │ └── vite.config.js
-│
+├── render.yaml (optional, for Render Blueprint)
 ├── .gitignore
 └── README.md
 
@@ -192,88 +138,164 @@ text
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Local Development)
 
 ### Prerequisites
-- **Node.js** (v14 or higher) – [Download](https://nodejs.org/)
-- **MongoDB** (local installation or MongoDB Atlas) – [Download](https://www.mongodb.com/try/download/community)
-- **npm** or **yarn**
-- **Git** (for cloning)
+- Node.js (v14 or higher)
+- MongoDB (local installation or MongoDB Atlas)
+- Git
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/Dhanush-ux177/rentflow-car-rental.git
+cd rentflow-car-rental
+2. Backend Setup
+bash
+cd backend
+npm install
+Create a .env file in the backend/ folder:
+
+env
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<dbname>?retryWrites=true&w=majority
+JWT_SECRET=your-super-secret-key
+PORT=5000
+NODE_ENV=development
+Seed the database with sample cars and users:
+
+bash
+npm run seed
+Start the backend server:
+
+bash
+npm run dev
+The API runs at http://localhost:5000.
+
+3. Frontend Setup
+Open a new terminal:
+
+bash
+cd frontend
+npm install
+Create a .env file in the frontend/ folder (optional for local development):
+
+env
+VITE_API_URL=http://localhost:5000
+Start the frontend development server:
+
+bash
+npm run dev
+The React app runs at http://localhost:3000.
+
+4. Demo Credentials
+Role	Email	Password
+User	user@example.com	password123
+Admin	admin@example.com	password123
+🔐 Environment Variables
+Backend (.env)
+Variable	Description
+MONGODB_URI	MongoDB connection string
+JWT_SECRET	Secret for signing JWT tokens
+PORT	Port for the server (default: 5000)
+NODE_ENV	development or production
+Frontend (.env – optional)
+Variable	Description
+VITE_API_URL	Backend API URL (for local dev)
+🌐 Deployment
+Backend (Render)
+Push your code to GitHub.
+
+On Render, create a Web Service and connect your repository.
+
+Set Root Directory to backend.
+
+Build Command: npm install
+
+Start Command: npm start
+
+Add environment variables: MONGODB_URI and JWT_SECRET.
+
+Deploy.
+
+Frontend (Vercel)
+On Vercel, import your GitHub repository.
+
+Set Framework Preset to Vite.
+
+Set Root Directory to frontend.
+
+Add environment variable: VITE_API_URL = your Render backend URL.
+
+Deploy – Vercel auto‑deploys on every push to the main branch.
+
+📡 API Endpoints
+Authentication
+Method	Endpoint	Description
+POST	/api/auth/register	Register new user
+POST	/api/auth/login	Login user
+Cars
+Method	Endpoint	Description
+GET	/api/cars	Get all cars (with filters)
+GET	/api/cars/:id	Get single car
+POST	/api/cars	Add car (admin)
+PUT	/api/cars/:id	Update car (admin)
+DELETE	/api/cars/:id	Delete car (admin)
+Bookings
+Method	Endpoint	Description
+POST	/api/bookings	Create booking
+GET	/api/bookings/user/:userId	Get user bookings
+GET	/api/bookings	Get all bookings (admin)
+PUT	/api/bookings/:id	Update booking (admin)
+PUT	/api/bookings/:id/cancel	Cancel booking (user)
+Admin
+Method	Endpoint	Description
+GET	/api/admin/stats	Dashboard statistics
+GET	/api/users	Get all users
+Drivers, Invoices, Payments, Reminders
+All CRUD operations are available under /api/drivers, /api/invoices, /api/payments, /api/reminders (admin only).
+
+🖼️ Screenshots
+(Add your own screenshots here)
+
+Homepage	Car Listing	Booking
+https://./screenshots/home.png	https://./screenshots/cars.png	https://./screenshots/booking.png
+Admin Dashboard	Booking Management	User Management
+https://./screenshots/admin.png	https://./screenshots/admin-bookings.png	https://./screenshots/admin-users.png
+🤝 Contributing
+Fork the repository.
+
+Create a new branch (git checkout -b feature/amazing-feature).
+
+Make your changes and commit (git commit -m 'Add some amazing feature').
+
+Push to the branch (git push origin feature/amazing-feature).
+
+Open a Pull Request.
+
+📄 License
+This project is open‑source and available under the MIT License.
+
+🙏 Acknowledgments
+Built with ❤️ using the MERN stack.
+
+Fonts and design inspiration from Google Fonts and modern UI trends.
+
+Special thanks to all contributors and testers.
+
+Last Updated: August 2026
+Version: 2.0.0
+Status: ✅ Production‑Ready
+
+🚗 RentFlow – Drive Your Dream Car.
+
+text
 
 ---
 
-### Backend Setup
+## ✅ How to use
 
-```bash
-# Navigate to the backend folder
-cd backend
+1. Create a new file named `README.md` in the **root of your project**.
+2. Copy the entire content above and paste it.
+3. Replace the placeholder screenshot paths with actual images (you can add a `screenshots/` folder).
+4. Commit and push.
 
-# Install dependencies
-npm install
-
-# Create .env file (copy the template below)
-# MONGODB_URI=mongodb://localhost:27017/car-rental
-# JWT_SECRET=your-super-secret-jwt-key
-# PORT=5000
-# NODE_ENV=development
-
-# Start MongoDB (local installation)
-mongod
-
-# Seed the database (populate with sample cars and users)
-nnpm run seed
-
-# Start the backend server
-npm run dev
-Backend runs on: http://localhost:5000
-
-Frontend Setup
-bash
-# Navigate to the frontend folder
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-Frontend runs on: http://localhost:3000
-
-Access the Application
-Open your browser and go to: http://localhost:3000
-
-Login with demo credentials (see below)
-
-🔑 Demo Credentials
-Role	Email	Password
-Regular User	user@example.com	password123
-Admin User	admin@example.com	password123
-📊 API Endpoints
-Authentication
-Method	Endpoint	Description	Auth
-POST	/api/auth/register	Register new user	No
-POST	/api/auth/login	Login user	No
-Cars
-Method	Endpoint	Description	Auth
-GET	/api/cars	Get all cars (with filters)	No
-GET	/api/cars/:id	Get single car	No
-POST	/api/cars	Add car	Admin
-PUT	/api/cars/:id	Update car	Admin
-DELETE	/api/cars/:id	Delete car	Admin
-Bookings
-Method	Endpoint	Description	Auth
-POST	/api/bookings	Create booking	User
-GET	/api/bookings/user/:userId	Get user bookings	User/Admin
-GET	/api/bookings	Get all bookings	Admin
-PUT	/api/bookings/:id	Update booking	Admin
-PUT	/api/bookings/:id/cancel	Cancel booking	User
-Admin
-Method	Endpoint	Description	Auth
-GET	/api/admin/stats	Dashboard statistics	Admin
-GET	/api/users	Get all users	Admin
-Drivers, Invoices, Payments, Reminders
-Method	Endpoint	Description	Auth
-CRUD	/api/drivers	Manage drivers	Admin
-CRUD	/api/invoices	Manage invoices	Admin
-CRUD	/api/payments	Manage payments	Admin
-CRUD	/api/reminders	Manage reminders	Admin
+Your repository will now have a polished, professional README perfect for college submission. Good luck! 🚀
