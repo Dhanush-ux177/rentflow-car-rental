@@ -12,10 +12,8 @@ const PORT = process.env.PORT || 5000;
 // ===== CORS – allow your frontend =====
 const allowedOrigins = [
   'http://localhost:3000',
+  /^https:\/\/rentflow-car-rental-.+\.vercel\.app$/, // matches all Vercel previews
   'https://rentflow-car-rental.vercel.app',
-  'https://rentflow-car-rental-dydloyzm6-dhanush-ux177s-projects.vercel.app',
-  'https://rentflow-car-rental-jp0fp3r4e-dhanush-ux177s-projects.vercel.app',
-  'https://rentflow-car-rental-67q4yra92-dhanush-ux177s-projects.vercel.app', // <-- added
   'https://rentflow-l80j.onrender.com'
 ];
 
