@@ -1,5 +1,4 @@
 require('dotenv').config();
-const dns = require('node:dns');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -10,15 +9,15 @@ const bcrypt = require('bcryptjs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-if (process.env.DNS_SERVER) dns.setServers([process.env.DNS_SERVER]);
-
 // ===== CORS – allow your frontend =====
 const allowedOrigins = [
   'http://localhost:3000',
   'https://rentflow-car-rental.vercel.app',
-  'https://rentflow-car-rental-dydloyzm6-dhanush-ux177s-projects.vercel.app', // your current preview URL
+  'https://rentflow-car-rental-dydloyzm6-dhanush-ux177s-projects.vercel.app',
+  'https://rentflow-car-rental-jp0fp3r4e-dhanush-ux177s-projects.vercel.app', // <-- added your current preview URL
   'https://rentflow-l80j.onrender.com'
 ];
+
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like Postman or curl)
@@ -26,6 +25,8 @@ app.use(cors({
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      // Log the blocked origin for debugging
+      console.warn('Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
