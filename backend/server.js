@@ -15,10 +15,10 @@ if (process.env.DNS_SERVER) dns.setServers([process.env.DNS_SERVER]);
 // ===== CORS – allow your frontend =====
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://rentflow-car-rental.vercel.app',   // ← your frontend URL
-  'https://rentflow-l80j.onrender.com'            // optional
+  'https://rentflow-car-rental.vercel.app',
+  'https://rentflow-car-rental-dydloyzm6-dhanush-ux177s-projects.vercel.app', // your current preview URL
+  'https://rentflow-l80j.onrender.com'
 ];
-
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like Postman or curl)

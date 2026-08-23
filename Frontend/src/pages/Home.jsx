@@ -9,12 +9,16 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('https://rentflow-backend-ad3t.onrender.com/api/cars')
+    // 👇 Hardcoded URL for testing
+    axios.get('https://rentflow-car-rental-2.onrender.com/api/cars')
       .then(res => {
         setCars(res.data);
         setLoading(false);
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error('API Error:', err);
+        setLoading(false);
+      });
   }, []);
 
   const handleBrowse = () => {
@@ -30,14 +34,12 @@ function Home() {
     return <div className="loading">Loading cars...</div>;
   }
 
-  // Duplicate the array for seamless scrolling
   const doubledCars = [...cars, ...cars, ...cars];
 
   return (
     <div className="home">
-      {/* Hero Section */}
       <section className="hero">
-        <span className="hero-eyebrow">Rentflow &middot; Self-drive &amp; chauffeured</span>
+        <span className="hero-eyebrow">Rentflow · Self-drive &amp; chauffeured</span>
         <h1>Drive your dream car</h1>
         <p>Rent the best cars at affordable prices. Explore our fleet and book in minutes.</p>
         <button onClick={handleBrowse} className="btn btn-primary">Browse All Cars</button>
@@ -45,7 +47,6 @@ function Home() {
 
       <div className="lane-divider" aria-hidden="true"></div>
 
-      {/* Featured Cars - Continuous Scrolling */}
       <section className="featured">
         <h2>Featured cars</h2>
         <p className="featured-sub">Fresh off the lot</p>
@@ -69,7 +70,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Quick Stats */}
       <section className="stats-section">
         <div className="stat-item">
           <h3>{cars.length}+</h3>

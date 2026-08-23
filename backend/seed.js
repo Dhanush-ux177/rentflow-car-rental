@@ -1,6 +1,9 @@
 require('dotenv').config();
+const dns = require('node:dns');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+
+if (process.env.DNS_SERVER) dns.setServers([process.env.DNS_SERVER]);
 
 // --- Schemas ---
 const UserSchema = new mongoose.Schema({
