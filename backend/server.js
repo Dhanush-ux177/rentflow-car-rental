@@ -14,7 +14,8 @@ const allowedOrigins = [
   'http://localhost:3000',
   'https://rentflow-car-rental.vercel.app',
   'https://rentflow-car-rental-dydloyzm6-dhanush-ux177s-projects.vercel.app',
-  'https://rentflow-car-rental-jp0fp3r4e-dhanush-ux177s-projects.vercel.app', // <-- added your current preview URL
+  'https://rentflow-car-rental-jp0fp3r4e-dhanush-ux177s-projects.vercel.app',
+  'https://rentflow-car-rental-67q4yra92-dhanush-ux177s-projects.vercel.app', // <-- added
   'https://rentflow-l80j.onrender.com'
 ];
 
@@ -25,7 +26,6 @@ app.use(cors({
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      // Log the blocked origin for debugging
       console.warn('Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
@@ -313,7 +313,6 @@ app.use('/api/payments', require('./routes/payments'));
 app.use('/api/reminders', require('./routes/reminders'));
 
 // ===== SERVE STATIC FRONTEND (if frontend is served from this service) =====
-// If you are using separate frontend service, you can comment these lines out.
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Catch-all for React Router (only if you serve frontend from this service)
