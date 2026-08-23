@@ -15,7 +15,7 @@ if (process.env.DNS_SERVER) dns.setServers([process.env.DNS_SERVER]);
 // ===== CORS – allow your frontend =====
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://rentflow-car-rental-1.onrender.com',   // ← your frontend URL
+  'https://rentflow-car-rental.vercel.app',   // ← your frontend URL
   'https://rentflow-l80j.onrender.com'            // optional
 ];
 
