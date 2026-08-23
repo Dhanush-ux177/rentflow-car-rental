@@ -1,4 +1,5 @@
 require('dotenv').config();
+const dns = require('node:dns');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,6 +9,8 @@ const bcrypt = require('bcryptjs');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+if (process.env.DNS_SERVER) dns.setServers([process.env.DNS_SERVER]);
 
 // ===== CORS – allow your frontend =====
 const allowedOrigins = [
